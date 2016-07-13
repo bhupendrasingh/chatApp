@@ -10,10 +10,10 @@ app.get("/",function(req,res){
 app.use(express.static(__dirname + '/public'));
 var io = require('socket.io').listen(app.listen(8000));
 
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
     //socket.emit('message', {message: 'welcome to the chat'});
     socket.on('send', function(data){
-        io.sockets.emit('message',data);
+        io.emit('message',data);
     });
 });
 console.log("App running on port 8000");
